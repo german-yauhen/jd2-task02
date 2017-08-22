@@ -6,7 +6,7 @@
 		<title>Registration Page</title>
 	</head>
 	<body>
-		<form action="registration-page/registration-form">
+		<form action="registration-page/process-registration-form">
 			<table>
 				<tr>
 					<td>Name</td>
