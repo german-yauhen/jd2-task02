@@ -20,7 +20,7 @@ public class RegistrationCommand {
 	public String redirectToRegistration(Model model) {
 		RegistrationData registrData = new RegistrationData();
 		model.addAttribute("registrData", registrData);
-		return "registraionPage";
+		return "registrationPage";
 	}
 	
 }
