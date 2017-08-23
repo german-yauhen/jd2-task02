@@ -6,7 +6,7 @@
 		<title>Main Page</title>
 	</head>
 	<body>
-		${registrData.getLogin()}::${registrData.getDocument()}
+		${registrData.login}::${registrData.document}
 		<br/>Result data:
 		<br/>${result-user-data}
 	</body>

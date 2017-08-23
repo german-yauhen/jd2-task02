@@ -1,6 +1,8 @@
 package by.htp.hermanovich.command;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,9 @@ import by.htp.hermanovich.domain.RegistrationData;
 @RequestMapping("/registration")
 public class RegistrationCommand {
 	
+	@Value("#{countryOptions}")
+	private Map<String, String> countryOptions;
+	
 	/**
 	 * This method describes action to prepare a summary object of registration
 	 * and return a name of view of registration form.
@@ -24,8 +29,10 @@ public class RegistrationCommand {
 	 */
 	@RequestMapping("/registration-page")
 	public String redirectToRegistration(Model model) {
+		System.out.println("redirectToRegistration(): " + "SUCCESS");
 		RegistrationData registrData = new RegistrationData();
 		model.addAttribute("registrData", registrData);
+		model.addAttribute("countryOptions", countryOptions);
 		return "registration-page";
 	}
 	
@@ -36,13 +43,8 @@ public class RegistrationCommand {
 	 * @return a name of view of main page
 	 */
 	@RequestMapping("/registration-page/process-registration-form")
-	public String processRegistrationForm(@ModelAttribute("registrData") RegistrationData registrData, HttpServletRequest request, Model model) {
-		registrData.setName(request.getParameter("name"));
-		registrData.setSurname(request.getParameter("surname"));
-		registrData.setDocument(request.getParameter("document"));
-		registrData.setDateOfBirth(request.getParameter("dateOfBirth"));
-		registrData.setLogin(request.getParameter("login"));
-		registrData.setPassword(request.getParameter("password"));
+	public String processRegistrationForm(@ModelAttribute("registrData") RegistrationData registrData, Model model) {
+		System.out.println("processRegistrationForm(): " + "SUCCESS");
 		StringBuilder result = new StringBuilder();
 		String delimeter = "::";
 		result.append(registrData.getName());
@@ -55,6 +57,8 @@ public class RegistrationCommand {
 		result.append(delimeter);
 		result.append(registrData.getLogin());
 		model.addAttribute("result-user-data", String.valueOf(result));
+		System.out.println(String.valueOf(result));
+		System.out.println(String.valueOf(model));
 		return "main-welcome-page";
 	}
 	

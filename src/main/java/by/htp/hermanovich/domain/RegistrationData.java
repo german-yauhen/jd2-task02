@@ -11,6 +11,7 @@ public class RegistrationData {
 	private String dateOfBirth;
 	private String login;
 	private String password;
+	private String country;
 	
 	public RegistrationData() {
 	}
@@ -61,6 +62,14 @@ public class RegistrationData {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 }

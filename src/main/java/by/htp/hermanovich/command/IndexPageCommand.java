@@ -18,6 +18,7 @@ public class IndexPageCommand {
 	 */
 	@RequestMapping("/")
 	public String redirectToIndexPage(Model model) {
+		System.out.println("redirectToIndexPage(): " + "SUCCESS");
 		return "redirect:registration/registration-page";
 	}
 }
