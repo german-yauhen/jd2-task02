@@ -1,7 +1,6 @@
 package by.htp.hermanovich.command;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,7 +35,7 @@ public class RegistrationCommand {
 	 * @param model - an information which will be represented in the browser
 	 * @return a name of view of main page
 	 */
-	@RequestMapping("/process-registration-form")
+	@RequestMapping("/registration-page/process-registration-form")
 	public String processRegistrationForm(@ModelAttribute("registrData") RegistrationData registrData, HttpServletRequest request, Model model) {
 		registrData.setName(request.getParameter("name"));
 		registrData.setSurname(request.getParameter("surname"));
@@ -55,8 +54,8 @@ public class RegistrationCommand {
 		result.append(registrData.getDateOfBirth());
 		result.append(delimeter);
 		result.append(registrData.getLogin());
-		model.addAttribute("result-user-data", result.toString());
-		return "main-page";
+		model.addAttribute("result-user-data", String.valueOf(result));
+		return "main-welcome-page";
 	}
 	
 }
