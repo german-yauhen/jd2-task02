@@ -18,6 +18,10 @@
 					<td><form:input type="text" path="surname" placeholder="Your surname" /></td>
 				</tr>
 				<tr>
+					<td>Gender</td>
+					<td><form:radiobuttons items="${registrData.genderTypes}" path="sex" /></td>
+				</tr>
+				<tr>
 					<td>Date of Birth</td>
 					<td><form:input type="text" path="dateOfBirth" placeholder="DD-MM-YYYY" /></td>
 				</tr>

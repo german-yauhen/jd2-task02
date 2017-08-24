@@ -6,8 +6,6 @@
 		<title>Main Page</title>
 	</head>
 	<body>
-		${registrData.login}::${registrData.document}
-		<br/>Result data:
 		<br/>${resultUserData}
 	</body>
 </html>
