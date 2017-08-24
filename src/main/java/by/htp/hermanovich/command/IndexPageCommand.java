@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Hermanovich Yauheni
  */
 @Controller
+
 public class IndexPageCommand {
 	
 	/**

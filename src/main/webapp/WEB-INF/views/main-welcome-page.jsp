@@ -8,6 +8,6 @@
 	<body>
 		${registrData.login}::${registrData.document}
 		<br/>Result data:
-		<br/>${result-user-data}
+		<br/>${resultUserData}
 	</body>
 </html>

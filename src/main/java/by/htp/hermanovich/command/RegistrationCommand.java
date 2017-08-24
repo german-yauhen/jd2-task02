@@ -56,7 +56,7 @@ public class RegistrationCommand {
 		result.append(registrData.getDateOfBirth());
 		result.append(delimeter);
 		result.append(registrData.getLogin());
-		model.addAttribute("result-user-data", String.valueOf(result));
+		model.addAttribute("resultUserData", String.valueOf(result));
 		System.out.println(String.valueOf(result));
 		System.out.println(String.valueOf(model));
 		return "main-welcome-page";
