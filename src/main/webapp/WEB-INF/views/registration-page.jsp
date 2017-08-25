@@ -12,18 +12,22 @@
 				<tr>
 					<td>Name</td>
 					<td><form:input type="text" path="name" placeholder="Your name" /></td>
+					<td><form:errors path="name" /></td>
 				</tr>
 				<tr>
 					<td>Surname</td>
 					<td><form:input type="text" path="surname" placeholder="Your surname" /></td>
+					<td><form:errors path="surname" /></td>
 				</tr>
 				<tr>
 					<td>Gender</td>
 					<td><form:radiobuttons items="${registrData.genderTypes}" path="sex" /></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Date of Birth</td>
 					<td><form:input type="text" path="dateOfBirth" placeholder="DD-MM-YYYY" /></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Document</td>
@@ -36,14 +40,17 @@
 							<form:options items="${countryOptions}" />
 						</form:select>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Login</td>
 					<td><form:input type="text" path="login" placeholder="Unique login" /></td>
+					<td><form:errors path="login" /></td>
 				</tr>
 				<tr>
 					<td>Password</td>
 					<td><form:input type="text" path="password" placeholder="Secret password" /></td>
+					<td></td>
 				</tr>
 			</table>
 			<input type="reset" value="Reset" />

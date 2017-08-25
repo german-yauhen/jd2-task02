@@ -2,24 +2,37 @@ package by.htp.hermanovich.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import by.htp.hermanovich.constants.Constants;
 
 /**
  * This class describes a summary object of registration.
+ * 
  * @author Hermanovich Yauheni
  */
 public class RegistrationData {
+
+	@NotNull(message = "Is Required")
+	@Size(min = 1, message = "Is Required")
 	private String name;
+
+	@NotNull(message = "Is Required")
+	@Size(min = 1, message = "Is Required")
 	private String surname;
+
 	private String document;
 	private String sex;
 	private String dateOfBirth;
+
+	@NotNull(message = "Is Required")
+	@Size(min = 1, message = "Is Required")
 	private String login;
+	
 	private String password;
 	private String country;
 	private List<String> genderTypes;
-	
+
 	public RegistrationData() {
 		genderTypes = new ArrayList<>();
 		genderTypes.add(Constants.MALE);
