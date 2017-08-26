@@ -3,9 +3,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Main Page</title>
+		<title>Welcome Page</title>
 	</head>
 	<body>
-		<br/>${resultUserData}
+		You have successfully registered.<br/>${resultUserData}
 	</body>
 </html>

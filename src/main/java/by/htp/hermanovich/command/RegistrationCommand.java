@@ -12,8 +12,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import by.htp.hermanovich.constants.Constants;
-import by.htp.hermanovich.domain.RegistrationData;
+import by.htp.hermanovich.constant.Constants;
+import by.htp.hermanovich.pojo.User;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * This class provides and describes actions/methods meant for processing with
@@ -45,9 +46,9 @@ public class RegistrationCommand {
 	 * @param model - an information which will be represented in the browser
 	 * @return a name of view of registration page
 	 */
-	@RequestMapping("/registration-page")
+	@RequestMapping("/register")
 	public String redirectToRegistration(Model model) {
-		model.addAttribute("registrData", new RegistrationData());
+		model.addAttribute("registrData", new User());
 		model.addAttribute("countryOptions", countryOptions);
 		logger.info(Constants.SUCCESS);
 		return "registration-page";
@@ -61,29 +62,28 @@ public class RegistrationCommand {
 	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of main page (if the validation was successful) or 
 	 */
-	@RequestMapping("/registration-page/process-registration-form")
-	public String processRegistrationForm(@Valid @ModelAttribute("registrData") RegistrationData registrData,
-			Model model, BindingResult bindingResult) {
+	@RequestMapping(value = "/register/process-registration-form", method = RequestMethod.POST)
+	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
+			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			logger.info(Constants.FORM_FIELDS_ERROR);
 			return "registration-page";
-		} else {
-			StringBuilder result = new StringBuilder();
-			result.append(registrData.getName());
-			result.append(Constants.DELIMETER);
-			result.append(registrData.getSurname());
-			result.append(Constants.DELIMETER);
-			result.append(registrData.getDocument());
-			result.append(Constants.DELIMETER);
-			result.append(registrData.getSex());
-			result.append(Constants.DELIMETER);
-			result.append(registrData.getDateOfBirth());
-			result.append(Constants.DELIMETER);
-			result.append(registrData.getLogin());
-			model.addAttribute("resultUserData", String.valueOf(result));
-			logger.info(String.valueOf(result));
-			logger.info(Constants.SUCCESS);
-			return "main-welcome-page";
 		}
+		StringBuilder result = new StringBuilder();
+		result.append(registrData.getName());
+		result.append(Constants.DELIMETER);
+		result.append(registrData.getSurname());
+		result.append(Constants.DELIMETER);
+		result.append(registrData.getDocument());
+		result.append(Constants.DELIMETER);
+		result.append(registrData.getSex());
+		result.append(Constants.DELIMETER);
+		result.append(registrData.getDateOfBirth());
+		result.append(Constants.DELIMETER);
+		result.append(registrData.getLogin());
+		model.addAttribute("resultUserData", String.valueOf(result));
+		logger.info(String.valueOf(result));
+		logger.info(Constants.SUCCESS);
+		return "welcome-page";
 	}
 }

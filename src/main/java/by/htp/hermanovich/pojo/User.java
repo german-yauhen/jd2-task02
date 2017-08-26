@@ -1,17 +1,17 @@
-package by.htp.hermanovich.domain;
+package by.htp.hermanovich.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import by.htp.hermanovich.constants.Constants;
+import by.htp.hermanovich.constant.Constants;
 
 /**
  * This class describes a summary object of registration.
- * 
  * @author Hermanovich Yauheni
  */
-public class RegistrationData {
+public class User {
 
 	@NotNull(message = "Is Required")
 	@Size(min = 1, message = "Is Required")
@@ -29,11 +29,14 @@ public class RegistrationData {
 	@Size(min = 1, message = "Is Required")
 	private String login;
 	
+	@NotNull(message = "The password field must not be empty")
+	@Pattern(regexp = "^[a-zA-Z0-9]{4,8}", message = "Must contains 4-8 chars/digits")
 	private String password;
+	
 	private String country;
 	private List<String> genderTypes;
-
-	public RegistrationData() {
+	
+	public User() {
 		genderTypes = new ArrayList<>();
 		genderTypes.add(Constants.MALE);
 		genderTypes.add(Constants.FEMALE);

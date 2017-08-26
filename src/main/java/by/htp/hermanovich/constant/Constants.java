@@ -1,4 +1,4 @@
-package by.htp.hermanovich.constants;
+package by.htp.hermanovich.constant;
 
 public class Constants {
 	public static final String SUCCESS = "SUCCESS";

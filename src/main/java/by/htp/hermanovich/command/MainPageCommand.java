@@ -4,23 +4,25 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import by.htp.hermanovich.constants.Constants;
+import by.htp.hermanovich.constant.Constants;
 
 /**
- * This class describes action to redirect to the index.jsp page automatically.
+ * This class describes action to redirect to the main-page.jsp page automatically.
  * @author Hermanovich Yauheni
  */
 @Controller
-public class IndexPageCommand {
-	private static final Logger logger = Logger.getLogger(IndexPageCommand.class);
+public class MainPageCommand {
+	private static final Logger logger = Logger.getLogger(MainPageCommand.class);
+	
 	/**
-	 * The method describes action to redirect to the index.jsp page.
+	 * This method describes action to redirect to the main-page.jsp page automatically
 	 * @param model - an information which will be represented in the browser 
 	 * @return a redirect command represented in the string value
 	 */
 	@RequestMapping("/")
-	public String redirectToIndexPage(Model model) {
+	public String redirectToMainPage(Model model) {
 		logger.info(Constants.SUCCESS);
-		return "redirect:registration/registration-page";
+		return "main-page";
 	}
+
 }
