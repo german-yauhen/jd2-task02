@@ -3,13 +3,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>by.htp.hermanovich</groupId>
-	<artifactId>registration</artifactId>
+	<artifactId>task02crud</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>registration</name>
+	<name>task02crud</name>
 
 	<build>
-		<finalName>registration</finalName>
+		<finalName>task02crud</finalName>
 		<!-- Tomcat Maven plugin -->
 		<plugins>
 			<plugin>
