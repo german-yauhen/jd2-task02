@@ -3,8 +3,6 @@ package by.htp.hermanovich.command;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import by.htp.hermanovich.constant.Constants;
 import by.htp.hermanovich.pojo.User;
+import by.htp.hermanovich.util.HibernateUtil;
 
 /**
  * This class provides and describes actions/methods meant for processing with
@@ -53,8 +52,9 @@ public class RegistrationCommand {
 	}
 
 	/**
-	 * This method describes action to process user's registration data stored
-	 * into the request object and implements a validation this stored data.
+	 * This method describes actions to process user's registration data stored
+	 * into the request object and to insert new user of application into the database table,
+	 * and implements a validation this stored data. The method uses transaction support.
 	 * @param registrData - a POJO corresponding with the model
 	 * @param model - an information which will be represented in the browser
 	 * @param bindingResult - an object holds the results of validation
@@ -64,15 +64,13 @@ public class RegistrationCommand {
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
 			BindingResult bindingResult, Model model) {
 		String resultPage = null;
-		SessionFactory sessionFactory = null;
+		Session session = null;
 		if (bindingResult.hasErrors()) {
 			logger.info(Constants.FORM_FIELDS_ERROR);
 			resultPage = "registration-page";
 		} else {
 			try {
-				sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-													.addAnnotatedClass(User.class).buildSessionFactory();
-				Session session = sessionFactory.openSession();
+				session = HibernateUtil.getSessionFactory().openSession();									
 				session.beginTransaction();
 				session.save(registrData);
 				session.getTransaction().commit();
@@ -82,8 +80,8 @@ public class RegistrationCommand {
 			} catch (Exception e) {
 				logger.error(Constants.HIBERNATE_EXCEPTION + e);
 			} finally {
-				if (sessionFactory != null) {
-					sessionFactory.close();
+				if (session != null) {
+					session.close();
 				}
 			}
 		}
