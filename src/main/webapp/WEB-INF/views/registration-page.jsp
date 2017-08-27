@@ -40,7 +40,7 @@
 					<td>Country of Issue</td>
 					<td>
 						<form:select path="country">
-							<form:options items="${countryOptions}" />
+							<form:options items="${registrData.countries}" />
 						</form:select>
 					</td>
 					<td></td>

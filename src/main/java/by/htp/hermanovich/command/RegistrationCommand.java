@@ -1,9 +1,10 @@
 package by.htp.hermanovich.command;
 
-import java.util.Map;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +25,8 @@ import by.htp.hermanovich.pojo.User;
 @Controller
 @RequestMapping("/registration-context")
 public class RegistrationCommand {
+	
 	private static final Logger logger = Logger.getLogger(RegistrationCommand.class);
-
-	@Value("#{countryOptions}")
-	private Map<String, String> countryOptions;
 	
 	/**
 	 * The method is used for populating command and form object
@@ -49,7 +48,6 @@ public class RegistrationCommand {
 	@RequestMapping("/register")
 	public String redirectToRegistration(Model model) {
 		model.addAttribute("registrData", new User());
-		model.addAttribute("countryOptions", countryOptions);
 		logger.info(Constants.SUCCESS);
 		return "registration-page";
 	}
@@ -65,10 +63,39 @@ public class RegistrationCommand {
 	@RequestMapping(value = "/register/process-registration-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
 			BindingResult bindingResult, Model model) {
+		String resultPage = null;
+		SessionFactory sessionFactory = null;
 		if (bindingResult.hasErrors()) {
 			logger.info(Constants.FORM_FIELDS_ERROR);
-			return "registration-page";
+			resultPage = "registration-page";
+		} else {
+			try {
+				sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+													.addAnnotatedClass(User.class).buildSessionFactory();
+				Session session = sessionFactory.openSession();
+				session.beginTransaction();
+				session.save(registrData);
+				session.getTransaction().commit();
+				representUserDataToModel(registrData, model);
+				logger.info(Constants.SUCCESS);
+				resultPage = "welcome-page";
+			} catch (Exception e) {
+				logger.error(Constants.HIBERNATE_EXCEPTION + e);
+			} finally {
+				if (sessionFactory != null) {
+					sessionFactory.close();
+				}
+			}
 		}
+		return resultPage;
+	}
+
+	/**
+	 * This method represents an information about user's object in the Model object.
+	 * @param registrData - a POJO corresponding with the model
+	 * @param model - an information which will be represented in the browser
+	 */
+	private void representUserDataToModel(User registrData, Model model) {
 		StringBuilder result = new StringBuilder();
 		result.append(registrData.getName());
 		result.append(Constants.DELIMETER);
@@ -83,7 +110,5 @@ public class RegistrationCommand {
 		result.append(registrData.getLogin());
 		model.addAttribute("resultUserData", String.valueOf(result));
 		logger.info(String.valueOf(result));
-		logger.info(Constants.SUCCESS);
-		return "welcome-page";
 	}
 }

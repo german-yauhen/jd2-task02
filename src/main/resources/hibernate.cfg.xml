@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- JDBS connection properties -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/task02_hermanovich?useSSL=false</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">doit</property>
+		<!-- JDBC connection pool properties -->
+		<property name="connection.pool_size">10</property>
+		<!-- SQL dialect properties -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- Display the SQL to console -->
+		<property name="show_sql">true</property>
+		<!-- Current session contex -->
+		<property name="current_session_context_class">thread</property>
+		<!-- Classes correspondents with database tables-->
+		<mapping class="by.htp.hermanovich.pojo.User" />
+	</session-factory>
+</hibernate-configuration>
