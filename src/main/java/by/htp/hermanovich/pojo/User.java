@@ -241,5 +241,9 @@ public class User {
 				+ "; birth " + dateOfBirth + "; login " + login + ", password " + password + ", country "
 				+ country;
 	}
+	
+	public String getFullName() {
+		return name + " " + surname;
+	}
 
 }

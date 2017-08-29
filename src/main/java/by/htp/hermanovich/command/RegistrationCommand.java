@@ -70,12 +70,12 @@ public class RegistrationCommand {
 			resultPage = "registration-page";
 		} else {
 			try {
+				// TODO: ?! REFACTORING: DAO, call dao method
 				session = HibernateUtil.getSessionFactory().openSession();									
 				session.beginTransaction();
 				session.save(registrData);
 				session.getTransaction().commit();
 				representUserDataToModel(registrData, model);
-				logger.info(Constants.SUCCESS);
 				resultPage = "welcome-page";
 			} catch (Exception e) {
 				logger.error(Constants.HIBERNATE_EXCEPTION + e);
@@ -85,6 +85,7 @@ public class RegistrationCommand {
 				}
 			}
 		}
+		logger.info(Constants.SUCCESS);
 		return resultPage;
 	}
 

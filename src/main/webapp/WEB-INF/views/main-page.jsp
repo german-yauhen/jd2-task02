@@ -10,9 +10,8 @@
 		<table>
 			<tbody>
 				<tr><td><a href="registration-context/register">Registration Menu</a></td></tr>
+				<tr><td><a href="read-users-context/read-users">Users Menu</a></td></tr>
 				<tr><td><a href="login-context/login">Login Menu (not exist)</a></td></tr>
-				<tr><td><a href="update-context/update">Update Data Menu (not exist)</a></td></tr>
-				<tr><td><a href="delete-context/delete">Delete Menu (not exist)</a></td></tr>
 			</tbody>
 		</table>
 	</body>

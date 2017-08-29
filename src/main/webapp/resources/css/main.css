@@ -1,3 +1,7 @@
 .error {
 	color: firebrick;
 }
+h1 {
+	font-style: oblique;
+	font-size: 20px;
+}
