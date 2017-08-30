@@ -22,6 +22,11 @@ public class ReadUsersCommand {
 	
 	private static final Logger logger = Logger.getLogger(ReadUsersCommand.class);
 	
+	/**
+	 * This method describes actions/methods meant for read all users from the database table.
+	 * @param model - information which will be represented in the browser
+	 * @return a name of view of the context page contains the list of all registered users
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/read-users")
 	public String redirectToAllUsers(Model model) {
@@ -43,5 +48,4 @@ public class ReadUsersCommand {
 		logger.info(Constants.SUCCESS);
 		return resultPage;
 	}
-
 }

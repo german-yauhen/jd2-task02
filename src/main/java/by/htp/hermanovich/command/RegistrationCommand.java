@@ -41,7 +41,7 @@ public class RegistrationCommand {
 	/**
 	 * This method describes action to prepare a summary object of registration
 	 * and return a name of view of registration form.
-	 * @param model - an information which will be represented in the browser
+	 * @param model - information which will be represented in the browser
 	 * @return a name of view of registration page
 	 */
 	@RequestMapping("/register")
@@ -56,9 +56,9 @@ public class RegistrationCommand {
 	 * into the request object and to insert new user of application into the database table,
 	 * and implements a validation this stored data. The method uses transaction support.
 	 * @param registrData - a POJO corresponding with the model
-	 * @param model - an information which will be represented in the browser
+	 * @param model - information which will be represented in the browser
 	 * @param bindingResult - an object holds the results of validation
-	 * @return a name of view of main page (if the validation was successful) or 
+	 * @return a name of view of main page (if the validation was successful)
 	 */
 	@RequestMapping(value = "/register/process-registration-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
@@ -92,7 +92,7 @@ public class RegistrationCommand {
 	/**
 	 * This method represents an information about user's object in the Model object.
 	 * @param registrData - a POJO corresponding with the model
-	 * @param model - an information which will be represented in the browser
+	 * @param model - information which will be represented in the browser
 	 */
 	private void representUserDataToModel(User registrData, Model model) {
 		StringBuilder result = new StringBuilder();

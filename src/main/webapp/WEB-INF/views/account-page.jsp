@@ -4,15 +4,11 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Main Page</title>
+		<spring:url value="/resources/css/main.css" var="mainCss" />
+		<link href="${mainCss}" rel="stylesheet" />
+		<title>Account Page</title>
 	</head>
 	<body>
-		<table>
-			<tbody>
-				<tr><td><a href="registration-context/register">Registration Menu</a></td></tr>
-				<tr><td><a href="read-users-context/read-users">Users Menu</a></td></tr>
-				<tr><td><a href="login-context/login">Login Menu</a></td></tr>
-			</tbody>
-		</table>
+		<h1>Welcome, ${userLogin}!</h1>
 	</body>
 </html>

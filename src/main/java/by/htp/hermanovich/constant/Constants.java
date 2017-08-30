@@ -13,4 +13,7 @@ public class Constants {
 	public static final String CZECH = "Czech";
 	public static final String POLAND = "Poland";
 	public static final String LITHUANIA = "Lithuania";
+	public static final String INVALID_DETAILS = "Invalid details";
+	public static final String USER_FOUND = "User was found";
+	public static final String USER_WAS_NOT_FOUND = "User was not found";
 }

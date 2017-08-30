@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<spring:url value="/resources/css/main.css" var="mainCss" />
+		<link href="${mainCss}" rel="stylesheet" />
+		<title>Authentication Menu</title>
+	</head>
+	<body>
+		<form:form action="login/process-login-form" modelAttribute="loginData">
+			<table>
+				<tr>
+					<td>Login</td>
+					<td><form:input type="text" path="login" placeholder="Your login"/></td>
+					<td><form:errors path="login" cssClass="error" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><form:input type="text" path="password" placeholder="Password" /></td>
+					<td><form:errors path="password" cssClass="error" /></td>
+				</tr>
+			</table>
+			<input type="reset" value="Reset" />
+			<input type="submit" value="Login" />
+			<div class="error">${error}</div>
+		</form:form>
+	</body>
+</html>
