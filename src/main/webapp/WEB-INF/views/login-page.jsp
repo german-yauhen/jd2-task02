@@ -9,17 +9,15 @@
 		<title>Authentication Menu</title>
 	</head>
 	<body>
-		<form:form action="login/process-login-form" modelAttribute="loginData">
+		<form:form action="login/process-login-form" modelAttribute="loginData" method="POST">
 			<table>
 				<tr>
 					<td>Login</td>
 					<td><form:input type="text" path="login" placeholder="Your login"/></td>
-					<td><form:errors path="login" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td>Password</td>
 					<td><form:input type="text" path="password" placeholder="Password" /></td>
-					<td><form:errors path="password" cssClass="error" /></td>
 				</tr>
 			</table>
 			<input type="reset" value="Reset" />

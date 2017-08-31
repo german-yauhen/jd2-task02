@@ -51,20 +51,15 @@ public class LoginCommand {
 	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of page corresponding with the account of the user
 	 */
-	@RequestMapping(value = "/login/process-login-form", method = RequestMethod.POST)
-	public String processLoginData(@Valid @ModelAttribute("loginData") Login loginData, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "login/process-login-form", method = RequestMethod.POST)
+	public String processLoginData(@ModelAttribute("loginData") Login loginData, Model model) {
 		String resultPage = null;
-		if (bindingResult.hasErrors()) {
-			logger.info(Constants.FORM_FIELDS_ERROR);
-			resultPage = "login-page";
+		if (checkLogin(loginData.getLogin(), loginData.getPassword())) {
+			model.addAttribute("userLogin", loginData.getLogin());
+			resultPage = "account-page";
 		} else {
-			if (checkLogin(loginData.getLogin(), loginData.getPassword())) {
-				model.addAttribute("userLogin", loginData.getLogin());
-				resultPage = "account-page";
-			} else {
-				model.addAttribute("error", Constants.INVALID_DETAILS);
-				resultPage = "login-page";
-			}
+			model.addAttribute("error", Constants.INVALID_DETAILS);
+			resultPage = "redirect:/login-context/login";
 		}
 		logger.info(Constants.SUCCESS);
 		return resultPage;
