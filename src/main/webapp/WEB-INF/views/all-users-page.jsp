@@ -1,3 +1,4 @@
+<%--suppress ALL --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,6 +8,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<spring:url value="/resources/css/main.css" var="mainCss" />
 		<link href="${mainCss}" rel="stylesheet" />
+		<script type="text/javascript">
+			function confirmDelete () {
+                var query = confirm("Are you sure you want to delete?");
+                if (query) return true;
+                else return false;
+            }
+		</script>
 		<title>All Users Menu</title>
 	</head>
 	<body>
@@ -26,13 +34,13 @@
 					<td>${user.getCountry()}</td>
 					<td>
 						<form action="update-context/update" method="GET">
-						    <input type="hidden" name="userId" value="${user.getId()}">
+						    <input type="hidden" name="userId" value="${user.getId()}" />
 						    <button type="submit">Update</button>
 						</form>
 					<td>
 						<form action="delete-context/delete" method="GET">
-						    <input type="hidden" name="userId" value="${user.getId()}">
-						    <button type="submit">Delete</button>
+						    <input type="hidden" name="userId" value="${user.getId()}" />
+							<button type="submit" onclick="return confirmDelete();">Delete</button>
 						</form>
 					</td>
 				</tr>
