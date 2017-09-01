@@ -9,9 +9,9 @@
 	<body>
 		<table>
 			<tbody>
-				<tr><td><a href="registration-context/register">Registration Menu</a></td></tr>
+				<tr><td><a href="registration-context/register-form">Registration Menu</a></td></tr>
 				<tr><td><a href="read-users-context/read-users">Users Menu</a></td></tr>
-				<tr><td><a href="login-context/login">Login Menu</a></td></tr>
+				<tr><td><a href="login-context/login-form">Login Menu</a></td></tr>
 			</tbody>
 		</table>
 	</body>

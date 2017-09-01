@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -9,7 +10,7 @@
 		<title>Authentication Menu</title>
 	</head>
 	<body>
-		<form:form action="login/process-login-form" modelAttribute="loginData" method="POST">
+		<form:form action="process-login-form" modelAttribute="loginData" method="POST">
 			<table>
 				<tr>
 					<td>Login</td>

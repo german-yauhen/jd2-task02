@@ -15,7 +15,7 @@
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<!-- Display the SQL to console -->
 		<property name="show_sql">true</property>
-		<!-- Current session contex -->
+		<!-- Current session context -->
 		<property name="current_session_context_class">thread</property>
 		<!-- Classes correspondents with database tables-->
 		<mapping class="by.htp.hermanovich.pojo.User" />

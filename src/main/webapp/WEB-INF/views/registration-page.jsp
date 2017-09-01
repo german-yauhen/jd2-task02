@@ -11,7 +11,7 @@
 		<title>Registration Page</title>
 	</head>
 	<body>
-		<form:form action="register/process-registration-form" modelAttribute="registrData">
+		<form:form action="process-registration-form" modelAttribute="registrData">
 			<table>
 				<tr>
 					<td>Name</td>

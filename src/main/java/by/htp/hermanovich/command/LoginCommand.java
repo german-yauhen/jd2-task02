@@ -34,7 +34,7 @@ public class LoginCommand {
 	 * @param model - information which will be represented in the browser
 	 * @return a name of view of login/authentication page
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/login-form")
 	public String redirectToLogin(Model model) {
 		// TODO create object of authentication and add to model
 		model.addAttribute("loginData", new Login());
@@ -51,7 +51,7 @@ public class LoginCommand {
 	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of page corresponding with the account of the user
 	 */
-	@RequestMapping(value = "login/process-login-form", method = RequestMethod.POST)
+	@RequestMapping(value = "/process-login-form", method = RequestMethod.POST)
 	public String processLoginData(@ModelAttribute("loginData") Login loginData, Model model) {
 		String resultPage = null;
 		if (checkLogin(loginData.getLogin(), loginData.getPassword())) {
@@ -59,7 +59,7 @@ public class LoginCommand {
 			resultPage = "account-page";
 		} else {
 			model.addAttribute("error", Constants.INVALID_DETAILS);
-			resultPage = "redirect:/login-context/login";
+			resultPage = "login-page";
 		}
 		logger.info(Constants.SUCCESS);
 		return resultPage;

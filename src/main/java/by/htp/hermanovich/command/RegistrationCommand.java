@@ -44,7 +44,7 @@ public class RegistrationCommand {
 	 * @param model - information which will be represented in the browser
 	 * @return a name of view of registration page
 	 */
-	@RequestMapping("/register")
+	@RequestMapping("/register-form")
 	public String redirectToRegistration(Model model) {
 		model.addAttribute("registrData", new User());
 		logger.info(Constants.SUCCESS);
@@ -60,7 +60,7 @@ public class RegistrationCommand {
 	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of main page (if the validation was successful)
 	 */
-	@RequestMapping(value = "/register/process-registration-form", method = RequestMethod.POST)
+	@RequestMapping(value = "/process-registration-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
 			BindingResult bindingResult, Model model) {
 		String resultPage = null;
@@ -70,7 +70,6 @@ public class RegistrationCommand {
 			resultPage = "registration-page";
 		} else {
 			try {
-				// TODO: ?! REFACTORING: DAO, call dao method
 				session = HibernateUtil.getSessionFactory().openSession();									
 				session.beginTransaction();
 				session.save(registrData);
