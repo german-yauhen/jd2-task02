@@ -16,4 +16,5 @@ public class Constants {
 	public static final String INVALID_DETAILS = "Invalid details";
 	public static final String USER_FOUND = "User was found";
 	public static final String USER_WAS_NOT_FOUND = "User was not found";
+    public static final String LOGOUT_SUCCESS = "You have successfully logged out";
 }

@@ -23,7 +23,8 @@
 			</table>
 			<input type="reset" value="Reset" />
 			<input type="submit" value="Login" />
-			<div class="error">${error}</div>
 		</form:form>
+		<div class="error">${error}</div>
+		<div class="message">${logoutMessage}</div>
 	</body>
 </html>

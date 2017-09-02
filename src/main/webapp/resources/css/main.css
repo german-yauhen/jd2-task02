@@ -1,5 +1,13 @@
 .error {
+	font-style: oblique;
+	font-size: 14px;
 	color: firebrick;
+}
+.message{
+	font-style: oblique;
+	font-size: 14px;
+	color: firebrick;
+
 }
 h1 {
 	font-style: oblique;

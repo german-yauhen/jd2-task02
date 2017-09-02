@@ -1,13 +1,11 @@
 package by.htp.hermanovich.command;
 
 import java.util.List;
-import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +13,7 @@ import by.htp.hermanovich.constant.Constants;
 import by.htp.hermanovich.pojo.Login;
 import by.htp.hermanovich.pojo.User;
 import by.htp.hermanovich.util.HibernateUtil;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * This class describes and provides actions/methods meant for an user
@@ -36,7 +35,6 @@ public class LoginCommand {
 	 */
 	@RequestMapping("/login-form")
 	public String redirectToLogin(Model model) {
-		// TODO create object of authentication and add to model
 		model.addAttribute("loginData", new Login());
 		logger.info(Constants.SUCCESS);
 		return "login-page";
@@ -48,7 +46,6 @@ public class LoginCommand {
 	 * exists in the database table. This method invoke the checkLogin(login, password) method
 	 * @param loginData - an object of Login.class with the information which will be processed
 	 * @param model - information which will be represented in the browser
-	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of page corresponding with the account of the user
 	 */
 	@RequestMapping(value = "/process-login-form", method = RequestMethod.POST)
@@ -63,6 +60,21 @@ public class LoginCommand {
 		}
 		logger.info(Constants.SUCCESS);
 		return resultPage;
+	}
+
+	/**
+	 * The method describes action to logout from the account. The method uses RedirectAttributes to store
+	 * parameters using redirect action. After the redirect, flash attributes are automatically added to the model
+	 * of the controller. The flash attributes, which are used in the method, are passed via the session
+	 * and are destroyed immediately after being used.
+	 * @param redirectAttributes - attributes for a redirect scenario
+	 * @return a name of view of page corresponding with the login page of the application
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logoutProcess(RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("logoutMessage", Constants.LOGOUT_SUCCESS);
+		logger.info(Constants.SUCCESS);
+		return "redirect:login-form";
 	}
 
 	/**
