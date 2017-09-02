@@ -23,7 +23,8 @@ public class ReadUsersCommand {
 	private static final Logger logger = Logger.getLogger(ReadUsersCommand.class);
 	
 	/**
-	 * This method describes actions/methods meant for read all users from the database table.
+	 * This method describes actions meant for read all users from the database table.
+	 * The method uses transaction support.
 	 * @param model - information which will be represented in the browser
 	 * @return a name of view of the context page contains the list of all registered users
 	 */
@@ -37,6 +38,7 @@ public class ReadUsersCommand {
 			session.beginTransaction();
 			List<User> usersList = session.createQuery("from User").getResultList();
 			model.addAttribute("usersList", usersList);
+			session.getTransaction().commit();
 			resultPage = "all-users-page";
 		} catch (Exception e) {
 			logger.error(Constants.HIBERNATE_EXCEPTION + e);

@@ -2,7 +2,6 @@ package by.htp.hermanovich.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,7 @@ import by.htp.hermanovich.constant.Constants;
 
 /**
  * This class describes a summary object of registration.
- * The entities of this class are used by Hibernate flamework.
+ * The entities of this class are used by Hibernate framework.
  * The fields of the class annotated according to the corresponding columns
  * in the database table.
  * Constructor also initializes list of gender types automatically.
@@ -67,19 +66,10 @@ public class User {
 	@Transient
 	private List<String> genderTypes;
 	
-	@Transient
-	private List<String> countries;
-	
 	public User() {
 		genderTypes = new ArrayList<>();
 		genderTypes.add(Constants.MALE);
 		genderTypes.add(Constants.FEMALE);
-		countries = new ArrayList<>();
-		countries.add(Constants.BELARUS);
-		countries.add(Constants.RUSSIA);
-		countries.add(Constants.CZECH);
-		countries.add(Constants.POLAND);
-		countries.add(Constants.LITHUANIA);
 	}
 
 	public Integer getId() {
@@ -156,10 +146,6 @@ public class User {
 	
 	public List<String> getGenderTypes() {
 		return genderTypes;
-	}
-
-	public List<String> getCountries() {
-		return countries;
 	}
 
 	@Override

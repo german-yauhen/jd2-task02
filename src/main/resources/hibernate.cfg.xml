@@ -19,5 +19,6 @@
 		<property name="current_session_context_class">thread</property>
 		<!-- Classes correspondents with database tables-->
 		<mapping class="by.htp.hermanovich.pojo.User" />
+		<mapping class="by.htp.hermanovich.pojo.Country" />
 	</session-factory>
 </hibernate-configuration>

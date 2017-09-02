@@ -1,6 +1,7 @@
 package by.htp.hermanovich.command;
 
 import javax.validation.Valid;
+import by.htp.hermanovich.pojo.Country;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import by.htp.hermanovich.constant.Constants;
 import by.htp.hermanovich.pojo.User;
 import by.htp.hermanovich.util.HibernateUtil;
+import java.util.List;
 
 /**
  * This class provides and describes actions/methods meant for processing with
@@ -47,8 +49,34 @@ public class RegistrationCommand {
 	@RequestMapping("/register-form")
 	public String redirectToRegistration(Model model) {
 		model.addAttribute("registrData", new User());
+		model.addAttribute("countries", getCountriesFromDB());
 		logger.info(Constants.SUCCESS);
 		return "registration-page";
+	}
+
+	/**
+	 * The method describes actions meant for read all countries from the database table
+	 * which are needed to be represented on registration page for choose as an option.
+	 * The method uses transaction support.
+	 * @return the list of countries from database table
+	 */
+	private List<Country> getCountriesFromDB() {
+		Session session = null;
+		List<Country> countries = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			countries = session.createQuery("from Country").getResultList();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			logger.error(Constants.HIBERNATE_EXCEPTION + e);
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		logger.info(Constants.SUCCESS);
+		return countries;
 	}
 
 	/**
@@ -62,7 +90,7 @@ public class RegistrationCommand {
 	 */
 	@RequestMapping(value = "/process-registration-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
-			BindingResult bindingResult, Model model) {
+										  BindingResult bindingResult, Model model) {
 		String resultPage = null;
 		Session session = null;
 		if (bindingResult.hasErrors()) {
@@ -75,6 +103,7 @@ public class RegistrationCommand {
 				session.save(registrData);
 				session.getTransaction().commit();
 				representUserDataToModel(registrData, model);
+				logger.info(Constants.SUCCESS);
 				resultPage = "welcome-page";
 			} catch (Exception e) {
 				logger.error(Constants.HIBERNATE_EXCEPTION + e);
@@ -84,7 +113,6 @@ public class RegistrationCommand {
 				}
 			}
 		}
-		logger.info(Constants.SUCCESS);
 		return resultPage;
 	}
 
