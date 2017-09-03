@@ -60,7 +60,7 @@ public class RegistrationCommand {
 	 * The method uses transaction support.
 	 * @return the list of countries from database table
 	 */
-	private List<Country> getCountriesFromDB() {
+	public static List<Country> getCountriesFromDB() {
 		Session session = null;
 		List<Country> countries = null;
 		try {
@@ -88,7 +88,7 @@ public class RegistrationCommand {
 	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of main page (if the validation was successful)
 	 */
-	@RequestMapping(value = "/process-registration-form", method = RequestMethod.POST)
+	@RequestMapping(value = "/register-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
 										  BindingResult bindingResult, Model model) {
 		String resultPage = null;
@@ -135,6 +135,6 @@ public class RegistrationCommand {
 		result.append(Constants.DELIMETER);
 		result.append(registrData.getLogin());
 		model.addAttribute("resultUserData", String.valueOf(result));
-		logger.info(String.valueOf(result));
+		logger.info(Constants.SUCCESS);
 	}
 }

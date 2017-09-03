@@ -9,8 +9,8 @@
 		<spring:url value="/resources/css/main.css" var="mainCss" />
 		<link href="${mainCss}" rel="stylesheet" />
 		<script type="text/javascript">
-			function confirmDelete () {
-                var query = confirm("Are you sure you want to delete?");
+			function confirmUpdateDelete() {
+                var query = confirm("Please, confirm the action.");
                 if (query) return true;
                 else return false;
             }
@@ -33,18 +33,21 @@
 					<td>${user.getDateOfBirth()}</td>
 					<td>${user.getCountry()}</td>
 					<td>
-						<form action="update-context/update" method="GET">
+						<form action="update-context/update-form" method="GET">
 						    <input type="hidden" name="userId" value="${user.getId()}" />
-						    <button type="submit">Update</button>
+						    <button type="submit" onclick="confirmUpdateDelete()">Update</button>
 						</form>
 					<td>
 						<form action="delete-context/delete" method="GET">
 						    <input type="hidden" name="userId" value="${user.getId()}" />
-							<button type="submit" onclick="return confirmDelete();">Delete</button>
+							<button type="submit" onclick="return confirmUpdateDelete();">Delete</button>
 						</form>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
+		<form:form action="to-main-page" method="GET">
+			<input type="submit" value="Main Page">
+		</form:form>
 	</body>
 </html>

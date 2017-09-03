@@ -12,4 +12,6 @@ public class Constants {
 	public static final String USER_FOUND = "User was found";
 	public static final String USER_WAS_NOT_FOUND = "User was not found";
     public static final String LOGOUT_SUCCESS = "You have successfully logged out";
+    public static final String USER_HAS_BEEN_DELETED = "User has been deleted from database table";
+	public static final String USER_DATA_HAVE_BEEN_UPDATED = "User's data have been updated";
 }

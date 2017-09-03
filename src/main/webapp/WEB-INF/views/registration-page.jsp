@@ -11,7 +11,7 @@
 		<title>Registration Page</title>
 	</head>
 	<body>
-		<form:form action="process-registration-form" modelAttribute="registrData">
+		<form:form action="process-registration-form" modelAttribute="registrData" method="POST">
 			<table>
 				<tr>
 					<td>Name</td>
@@ -46,7 +46,6 @@
 							</jstl:forEach>
 						</form:select>
 					</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>Login</td>
