@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import by.htp.hermanovich.constant.Constants;
 import by.htp.hermanovich.pojo.User;
 import by.htp.hermanovich.util.HibernateUtil;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 /**
@@ -88,9 +89,10 @@ public class RegistrationCommand {
 	 * @param bindingResult - an object holds the results of validation
 	 * @return a name of view of main page (if the validation was successful)
 	 */
-	@RequestMapping(value = "/register-form", method = RequestMethod.POST)
+	@RequestMapping(value = "/process-registration-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
-										  BindingResult bindingResult, Model model) {
+										  BindingResult bindingResult, Model model,
+										  RedirectAttributes redirectAttributes) {
 		String resultPage = null;
 		Session session = null;
 		if (bindingResult.hasErrors()) {

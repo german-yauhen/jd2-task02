@@ -26,5 +26,8 @@
 		</form:form>
 		<div class="error">${error}</div>
 		<div class="message">${logoutMessage}</div>
+		<form action="to-main-page" method="GET">
+			<input type="submit" value="Main Page">
+		</form>
 	</body>
 </html>

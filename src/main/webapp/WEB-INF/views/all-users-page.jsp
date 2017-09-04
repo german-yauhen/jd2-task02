@@ -35,7 +35,7 @@
 					<td>
 						<form action="update-context/update-form" method="GET">
 						    <input type="hidden" name="userId" value="${user.getId()}" />
-						    <button type="submit" onclick="confirmUpdateDelete()">Update</button>
+						    <button type="submit" onclick="return confirmUpdateDelete()">Update</button>
 						</form>
 					<td>
 						<form action="delete-context/delete" method="GET">
@@ -46,8 +46,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<form:form action="to-main-page" method="GET">
+		<form action="to-main-page" method="GET">
 			<input type="submit" value="Main Page">
-		</form:form>
+		</form>
 	</body>
 </html>

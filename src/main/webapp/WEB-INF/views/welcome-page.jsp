@@ -7,5 +7,8 @@
 	</head>
 	<body>
 		You have successfully registered.<br/>${resultUserData}
+		<form action="to-main-page" method="GET">
+			<input type="submit" value="Main Page">
+		</form>
 	</body>
 </html>
