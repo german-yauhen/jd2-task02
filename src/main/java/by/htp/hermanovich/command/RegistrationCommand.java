@@ -91,12 +91,12 @@ public class RegistrationCommand {
 	 */
 	@RequestMapping(value = "/process-registration-form", method = RequestMethod.POST)
 	public String processRegistrationForm(@Valid @ModelAttribute("registrData") User registrData,
-										  BindingResult bindingResult, Model model,
-										  RedirectAttributes redirectAttributes) {
+										  BindingResult bindingResult, Model model) {
 		String resultPage = null;
 		Session session = null;
 		if (bindingResult.hasErrors()) {
 			logger.info(Constants.FORM_FIELDS_ERROR);
+			model.addAttribute("countries", getCountriesFromDB());
 			resultPage = "registration-page";
 		} else {
 			try {

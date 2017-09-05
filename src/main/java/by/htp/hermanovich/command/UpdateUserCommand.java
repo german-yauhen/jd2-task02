@@ -6,11 +6,14 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import by.htp.hermanovich.constant.Constants;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("*/update-context")
@@ -41,31 +44,31 @@ public class UpdateUserCommand {
 	}
 
 	@RequestMapping(value = "/process-update-form", method = RequestMethod.POST)
-	public String processUpdateForm(HttpServletRequest request) {
+	public String processUpdateForm(@Valid @ModelAttribute("userForUpdate") User userForUpdate, BindingResult bindingResult, Model model) {
 		String resultPage = null;
 		Session session = null;
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
-			User userForUpdate = session.get(User.class, Integer.parseInt(request.getParameter("userId")));
-			userForUpdate.setName(request.getParameter("name"));
-			userForUpdate.setSurname(request.getParameter("surname"));
-			userForUpdate.setDocument(request.getParameter("document"));
-			userForUpdate.setSex(request.getParameter("gender"));
-			userForUpdate.setDateOfBirth(request.getParameter("dateOfBirth"));
-			userForUpdate.setLogin(request.getParameter("login"));
-			userForUpdate.setPassword(request.getParameter("password"));
-			userForUpdate.setCountry(request.getParameter("country"));
-			session.getTransaction().commit();
-			logger.info(Constants.USER_DATA_HAVE_BEEN_UPDATED);
-			resultPage = "redirect:/read-users-context/read-users";
-		} catch (Exception e) {
-			logger.error(Constants.HIBERNATE_EXCEPTION + e);
-		} finally {
-			if (session != null) {
-				session.close();
+		if (bindingResult.hasErrors()) {
+			logger.info(Constants.FORM_FIELDS_ERROR);
+			model.addAttribute("countries", RegistrationCommand.getCountriesFromDB());
+			resultPage = "update-page";
+		} else {
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				session.beginTransaction();
+				System.out.println(userForUpdate);
+				session.update(userForUpdate);
+				session.getTransaction().commit();
+				logger.info(Constants.USER_DATA_HAVE_BEEN_UPDATED);
+				resultPage = "redirect:/read-users-context/read-users";
+			} catch (Exception e) {
+				logger.error(Constants.HIBERNATE_EXCEPTION + e);
+			} finally {
+				if (session != null) {
+					session.close();
+				}
 			}
 		}
+		logger.info(Constants.SUCCESS);
 		return resultPage;
 	}
 }
