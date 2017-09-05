@@ -40,7 +40,7 @@ public class UpdateUserCommand {
 		return resultPage;
 	}
 
-	@RequestMapping(value = "process-update-form", method = RequestMethod.POST)
+	@RequestMapping(value = "/process-update-form", method = RequestMethod.POST)
 	public String processUpdateForm(HttpServletRequest request) {
 		String resultPage = null;
 		Session session = null;
@@ -58,7 +58,7 @@ public class UpdateUserCommand {
 			userForUpdate.setCountry(request.getParameter("country"));
 			session.getTransaction().commit();
 			logger.info(Constants.USER_DATA_HAVE_BEEN_UPDATED);
-			resultPage = "all-users-page";
+			resultPage = "redirect:/read-users-context/read-users";
 		} catch (Exception e) {
 			logger.error(Constants.HIBERNATE_EXCEPTION + e);
 		} finally {

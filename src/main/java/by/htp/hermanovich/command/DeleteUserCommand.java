@@ -46,7 +46,7 @@ public class DeleteUserCommand {
 			model.addAttribute("usersList", usersList);
 			session.getTransaction().commit();
 			logger.info(Constants.USER_HAS_BEEN_DELETED);
-			resultPage = "all-users-page";
+			resultPage = "redirect:/read-users-context/read-users";
 		} catch (Exception e) {
 			logger.error(Constants.HIBERNATE_EXCEPTION + e);
 		} finally {

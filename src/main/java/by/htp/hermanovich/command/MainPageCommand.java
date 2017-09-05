@@ -36,5 +36,4 @@ public class MainPageCommand {
 		logger.info(Constants.SUCCESS);
 		return "redirect:/";
 	}
-
 }

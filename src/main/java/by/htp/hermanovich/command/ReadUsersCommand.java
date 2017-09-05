@@ -28,7 +28,6 @@ public class ReadUsersCommand {
 	 * @param model - information which will be represented in the browser
 	 * @return a name of view of the context page contains the list of all registered users
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping("/read-users")
 	public String redirectToAllUsers(Model model) {
 		String resultPage = null;
